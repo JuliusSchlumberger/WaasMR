@@ -1,0 +1,4 @@
+	max_draught	min_draught	min_depth	freight transport contribution per year (Rhine model)	Mt per ship	number of ships per year	# ships per 10 days	load per 10 days	# ships/hour
+normal_ship	3.6	1.9	1.8	142.35	0.010493138	13566.00893	376.8335814	3.954166667	1.570139922
+medium_ship	3.1	1.57	1.57	142.35	0.002986702	47661.26095	1323.923915	3.954166667	5.516349647
+minimum_ship	2.5	1.2	0.75	142.35	0.000360369	395011.2334	10972.53426	3.954166667	45.71889276

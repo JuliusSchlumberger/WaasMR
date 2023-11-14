@@ -1,0 +1,14 @@
+1	grass
+2	corn
+3	potatoes
+4	(sugar) beet
+5	cereals
+6	other
+7	arboriculture
+8	glasshouse horticulture
+9	fruit
+10	bulbs
+11	deciduous forest
+12	coniferous forest
+13	opengrownnaturegeb
+14	bare ground natures

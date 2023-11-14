@@ -1,0 +1,125 @@
+import numpy as np
+
+class TransferDicts:
+    """https://stackoverflow.com/questions/1336791/dictionary-vs-object-which-is-more-efficient-and-why"""
+    def __init__(self, inputs):
+
+        self.expos = inputs.expos
+        self.DikeRtot = inputs.DikeRtot
+        self.DikeRing = inputs.DikeRing
+        self.PrimDike = inputs.PrimDike
+        self.LandUse = inputs.LandUse
+        self.DEM = inputs.DEM
+        self.DamFactTbl = inputs.DamFactTbl
+        self.Fact788 = inputs.Fact788
+        self.Fact7150 = inputs.Fact7150
+        self.Fact16000 = inputs.Fact16000
+        self.Fact20000 = inputs.Fact20000
+        self.Dif_2 = inputs.Dif_2
+        self.Dif_6 = inputs.Dif_6
+        self.Dif_7 = inputs.Dif_7
+        self.smalldike = inputs.smalldike
+        self.largedike = inputs.largedike
+        self.floodprone = inputs.floodprone
+        self.floodresil = inputs.floodresil
+        self.localprotect = inputs.localprotect
+        self.noconstruction = inputs.noconstruction
+        self.agri_areas = inputs.agri_areas
+        self.rout = inputs.rout
+        self.rin = inputs.rin
+        self.collectwater = inputs.collectwater
+        self.ReducPointTbl = inputs.ReducPointTbl
+        self.d_rainwater_tank = inputs.d_rainwater_tank
+        self.d_groundwater_irrigation = inputs.d_groundwater_irrigation
+        self.d_river_irrigation = inputs.d_river_irrigation
+        self.dike_weight_rel = inputs.dike_weight_rel
+        self.dike_maintenance = inputs.dike_maintenance
+        self.multimode_cost_red = inputs.multimode_cost_red
+        self.used_ships = inputs.used_ships
+        self.dredging_channel = inputs.dredging_channel
+        self.init_dredging = inputs.init_dredging
+        self.timestep = 0
+        self.Qriv_reduc = 0
+        self.precip = 0
+        self.evapo_ref = 0
+        self.survfrac = inputs.survfrac
+        self.agriculture = inputs.agriculture
+        self.irrigation_effectiveness = inputs.irrigation_effectiveness
+        self.lost_cropland = inputs.lost_cropland
+        self.change_years = inputs.change_years
+        self.dredged_depth = inputs.dredged_depth
+        self.f_a_decision_value = inputs.f_a_tp_cond
+        self.f_u_decision_value = inputs.f_u_tp_cond
+        self.d_a_decision_value = inputs.d_a_tp_cond
+        self.d_s_decision_value = inputs.d_s_tp_cond
+        self.pathways_list_f_a = inputs.pathways_list_f_a
+        self.pathways_list_f_u = inputs.pathways_list_f_u
+        self.pathways_list_d_a = inputs.pathways_list_d_a
+        self.pathways_list_d_s = inputs.pathways_list_d_s
+        self.DikeFails_tot= 0
+        self.DamAgr_f_tot= 0
+        self.DamAgr_f= 0
+        self.DikeFails= 0
+        self.wlvl= 0
+        self.fragdike= 0
+        self.floodtiming= 0
+        self.ClimQmax= inputs.ClimQmax
+        self.sprink_dikes= 0
+        self.DamUrb_tot= 0
+        self.DamUrb_f= 0
+        self.DamShp_tot= 0
+        self.revenue_agr = inputs.revenue_ref
+        self.DamShp= inputs.DamShp
+        self.load_perc= 0
+        self.ClimShip= 0
+        self.wdepth_min= 0
+        self.DamAgr_d_tot= inputs.DamAgr_d_tot
+        self.DamAgr_d= inputs.DamAgr_d
+        self.caprise= 0
+        self.collectwater_switch = inputs.collectwater
+        self.epot= 0
+        self.eact= 0
+        self.eratio= 0
+        self.soilm= inputs.soilm
+        self.soilm_max = self.soilm
+        self.groundwlvl= inputs.groundwlvl
+        self.percol= 0
+        self.wbalance= 0
+        self.runoff= 0
+        self.sprink= 0
+        self.damfrac_t_d= inputs.damfrac_t_d
+        self.damfrac_tot_d= inputs.damfrac_tot_d
+        self.yact= 0
+        self.ypot= 0
+        self.no_constr = inputs.LandUse
+        self.f_ditch = inputs.f_ditch
+        self.MaxDamTbl = inputs.MaxDamTbl
+        self.f_ditch_red = inputs.f_ditch_red
+        self.revenue_reduc = inputs.revenue_reduc
+        self.crop_vul = inputs.crop_vul
+        self.dike_maintenance = inputs.dike_maintenance
+        self.d_resilient_crop_switch = False
+        self.dyn_vulnerability_urb_factors = inputs.dyn_vulnerability_urb_factors
+        self.riskaware_period = inputs.riskaware_period
+        self.revenue_reduc_noflood = 1
+        self.revenue_reduc_flood = 0.8
+        self.precip_deficit=0
+
+        self.WL_time_exposed = np.zeros((60, 125))  # added by Veerle
+        self.droughtdays = inputs.droughtdays
+        self.agri_areas_exposed_count = inputs.agri_areas_exposed_count
+
+        self.droughtdays_threshold = inputs.droughtdays_threshold
+        self.storage_reduc = inputs.storage_reduc
+        self.germ_stage_depth = inputs.germ_stage_depth
+        self.grow_stage_depth = inputs.grow_stage_depth
+        self.timelag = inputs.timelag
+        self.RP = inputs.RP
+        self.RS = inputs.RS
+        self.SP = inputs.SP
+
+        self.sprink_riv = 0
+        self.sprink_gw = 0
+        self.sprink_rain = 0
+        
+        

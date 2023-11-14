@@ -1,0 +1,19 @@
+lu classes:
+01: urban
+02: empty
+03: empty
+04: empty
+05: recreation
+06: industry
+07: empty
+08: nature
+09: agriculture
+10: ditches (measure)
+11: greenhouses
+12: empty
+13: infrastructure
+14: river
+15: empty
+16: empty
+17: noconstructionzone
+18: dikes
