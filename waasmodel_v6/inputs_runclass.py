@@ -60,15 +60,7 @@ class RunClassInputs:
         self.keys_dict[2]['multihaz_agr']['analysis'] = ['f_a_decision_value', 'DamAgr_f', 'pathways_list_f_a',
                                                       'DikeFails', 'wlvl', 'fragdike',
                                                       'ClimQmax', 'sprink_dikes']
-        # self.keys_dict[2]['multihaz_agr']['analysis'] = ['f_a_decision_value', 'd_a_decision_value', 'DikeFails_tot',
-        #                                                  'DamAgr_f_tot',
-        #                                                  'lost_cropland', 'pathways_list_f_a',
-        #                                                  'DamAgr_f', 'DikeFails', 'wlvl', 'fragdike', 'floodtiming',
-        #                                                  'ClimQmax', 'sprink_dikes', 'DamAgr_d', 'caprise',
-        #                                                  'collectwater',
-        #                                                  'epot', 'eact', 'eratio', 'soilm', 'groundwlvl', 'percol',
-        #                                                  'wbalance', 'survfrac', 'runoff', 'sprink', 'damfrac_t_d',
-        #                                                  'damfrac_tot_d', 'yact', 'ypot', 'revenue_agr']
+
         self.keys_dict[2]['multihaz_urb']['out_only'] = ['f_u_decision_value', 'DamUrb_tot',
                                                       'pathways_list_f_u']
         self.keys_dict[2]['multihaz_urb']['analysis'] = ['f_u_decision_value', 'DikeFails_tot', 'DamUrb_tot',
@@ -106,4 +98,11 @@ class RunClassInputs:
         self.keys_dict[3]['multihaz_multisec']['analysis'] = ['f_a_decision_value', 'DamAgr_f', 'pathways_list_f_a',
                                                          'DikeFails', 'wlvl', 'fragdike',
                                                          'ClimQmax', 'sprink_dikes']
+
+        # input analysis
+        self.keys_dict[1]['flood_agr']['analysis'] = ['floodtiming']
+        self.keys_dict[1]['drought_agr']['analysis'] = ['droughtdays']
+
+        self.keys_dict[2]['multihaz_agr']['analysis'] = ['floodtiming', 'droughtdays', 'agri_areas_exposed_count'
+                                                         ]
 

@@ -175,11 +175,11 @@ class MeasureModule:
                     pass
                     # print(f"{next_measure} is not in the list.")
 
-
-                if next_measure == 'f_resilient_crops' and str(
-                        inputs.measure_numbers['d_resilient_crops']) in module_transfer.pathways_list_d_a:
-                    module_transfer.pathways_list_d_a = module_transfer.pathways_list_d_a.replace(
-                        str(inputs.measure_numbers['d_resilient_crops']), '').replace('&&', '&')
+                #
+                # if next_measure == 'f_resilient_crops' and str(
+                #         inputs.measure_numbers['d_resilient_crops']) in module_transfer.pathways_list_d_a:
+                #     module_transfer.pathways_list_d_a = module_transfer.pathways_list_d_a.replace(
+                #         str(inputs.measure_numbers['d_resilient_crops']), '').replace('&&', '&')
 
                 self.y_lastm_f_a = year  # store year of last measure implemented
         if self.hs_pair == 'flood_urb' or self.stage > 1:
@@ -208,10 +208,10 @@ class MeasureModule:
                     module_transfer=module_transfer, inputs=inputs)
                 self.y_lastm_d_a = year  # store year of last measure implemented
 
-                if next_measure == 'f_resilient_crops' and str(
-                        inputs.measure_numbers['d_resilient_crops']) in module_transfer.pathways_list_d_a:
-                    module_transfer.pathways_list_d_a = module_transfer.pathways_list_d_a.replace(
-                        str(inputs.measure_numbers['d_resilient_crops']), '').replace('&&', '&')
+                # if next_measure == 'f_resilient_crops' and str(
+                #         inputs.measure_numbers['d_resilient_crops']) in module_transfer.pathways_list_d_a:
+                #     module_transfer.pathways_list_d_a = module_transfer.pathways_list_d_a.replace(
+                #         str(inputs.measure_numbers['d_resilient_crops']), '').replace('&&', '&')
 
         if self.hs_pair == 'drought_shp' or self.stage > 1:
             if (module_transfer.d_s_decision_value >= inputs.d_s_tp_cond or module_transfer.DamShp_tot >= inputs.d_s_tp_extreme_year) and year >= self.y_lastm_d_s + inputs.yrs_btw_nmeas:

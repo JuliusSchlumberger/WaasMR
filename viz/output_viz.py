@@ -907,9 +907,17 @@ class OutputPocessing():
                 axs[ax_tick].set_ylabel(f'Model Realizations (n={len(portfol_df.ylabel)})')
             else:
                 axs[ax_tick].set_ylabel(f'')
-            axs[ax_tick].set_title(f'{no_interaction[0]}: {portfol}')
+            # axs[ax_tick].set_title(f'{no_interaction[0]}: {portfol}')
             axs[ax_tick].set_xlim([0,100])
             axs[ax_tick].set_xticks(np.arange(0, 101, 10))
+            # Add text boxes
+            if ax_tick == 0:
+                axs[ax_tick].set_title(f'flood pathway 6 without drought risk pathway')
+                axs[ax_tick].text(2, 28.3, 'a', bbox=dict(facecolor='white', alpha=0.8))
+            else:
+                axs[ax_tick].set_title(f'flood pathway 6 with drought risk pathway 3')
+                axs[ax_tick].text(2, 28.3, 'b',
+                                  bbox=dict(facecolor='white', alpha=0.8))
 
             # store for difference_groups
             if portfol == difference_groups['no_interaction'][1]:
@@ -935,6 +943,8 @@ class OutputPocessing():
         axs[ax_tick].set_title(f'Shift timing')
         axs[ax_tick].set_xlim([-50, 50])
         axs[ax_tick].set_xticks(np.arange(-50, 51, 10))
+        axs[ax_tick].text(-48.1, 28.3, 'c', bbox=dict(facecolor='white', alpha=0.8))
+
         # plt.tight_layout()
 
         # Adjust figure to make space for the legend

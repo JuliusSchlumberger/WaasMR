@@ -38,23 +38,23 @@ def normal_run(realization_ini, sector, stage, pathway_combinations, start_value
 
 
 # SPECIFIC RUN #
-sector = 'drought_shp' # options are: 'flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb', 'multihaz_multisec'
+sector = 'multihaz_agr' # options are: 'flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb', 'multihaz_multisec'
 first_scenario = 1  # scenarios from 1 to 31
-stage = 1
+stage = 2
 num_scenarios = 30
 analysis = 'analysis'  # 'out_only', 'analysis' to specify which outputfiles are generated (see inputs_runclass.py)
 test_all = False  # if False, only discharge levels not leading to damages will be neglected (speed up computation)
-outfolder = 'model_outputs'  # name of folder (within current folder) created to store the outputs
+outfolder = 'inputs_visual'  # name of folder (within current folder) created to store the outputs
 measure_list = [['no_measure']]
-realization_numbers = [22000]
+realization_numbers = [9999]
 portfolio_numbers = {
-                'flood_agr': 2,
+                'flood_agr': 0,
                 'flood_urb': 0,
-                'drought_agr': 1,
+                'drought_agr': 0,
                 'drought_shp': 0}
 
-# specific_run(sector=sector, stage=stage, first_scenario=first_scenario, num_scenarios=num_scenarios,analysis=analysis,
-#              test_all=test_all, outfolder=outfolder, measure_list=measure_list, portfolio_numbers=portfolio_numbers)
+specific_run(sector=sector, stage=stage, first_scenario=first_scenario, num_scenarios=num_scenarios,analysis=analysis,
+             test_all=test_all, outfolder=outfolder, measure_list=measure_list, portfolio_numbers=portfolio_numbers)
 
 
 # NORMAL RUN #
@@ -70,5 +70,5 @@ start_value = 6 # which potential pathways combinations to test.
 end_value = len(pathway_combinations)
 
 #
-normal_run(realization_ini=realization, sector=sector,stage=stage,
-           pathway_combinations=pathway_combinations, start_value=start_value, end_value=end_value)
+# normal_run(realization_ini=realization, sector=sector,stage=stage,
+#            pathway_combinations=pathway_combinations, start_value=start_value, end_value=end_value)

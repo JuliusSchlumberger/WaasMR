@@ -2,7 +2,7 @@ from viz.output_viz import OutputPocessing
 
 
 realization = 5000
-stages = [1,2,3]
+stages = [2]
 outfolder = 'model_outputs'  # name of folder (within current folder) created to store the outputs
 no_realizations = 1
 
@@ -17,10 +17,10 @@ sectors_list = {1: ['flood_urb'],
 sectors_list = sectors_list[max(stages)]
 print(sectors_list, max(stages))
 
-robustness_heatmap = True
+robustness_heatmap = False
 interactionplot = False
 convert_files_switch = False
-timingplot = False
+timingplot = True
 
 difference_groups = {'no_interaction': ['f_a', '06_00_00_00' ],
                              'with_interaction': ['f_a', '06_03_00_00' ]}

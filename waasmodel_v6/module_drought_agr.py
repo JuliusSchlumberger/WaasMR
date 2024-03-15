@@ -482,7 +482,8 @@ class DAgrModule:
 
         return collectwater, sprink, sprink_need
 
-    def waterlogging(self,  precip, timemod, module_transfer, inputs):
+    def \
+            waterlogging(self,  precip, timemod, module_transfer, inputs):
         if self.stage >= 2:
             # Do the pre-calculation work
             precip_temp = np.zeros((60, 125))
