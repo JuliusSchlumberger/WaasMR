@@ -2,7 +2,7 @@ from viz.output_viz import OutputPocessing
 
 
 realization = 5000
-stages = [2]
+stages = [3]
 outfolder = 'model_outputs'  # name of folder (within current folder) created to store the outputs
 no_realizations = 1
 
@@ -10,7 +10,11 @@ sectors_list = {1: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp'],
                 2: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb'],
                 3: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb',
                     'multihaz_multisec']}
-sectors_list = {1: ['flood_urb'],
+sectors_list = {1: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp'],
+                2: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb'],
+                3: ['flood_agr', 'drought_agr', 'flood_urb', 'drought_shp', 'multihaz_agr', 'multihaz_urb',
+                    'multihaz_multisec']}
+sectors_list = {1: ['flood_agr'],
                 2: ['multihaz_agr'],
                 3: ['multihaz_multisec']}
 

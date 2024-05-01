@@ -42,8 +42,8 @@ class WaasModel:
                                                           inputs=self.inputs)
 
 
-        if timestep_index % (36 * 20) == 0:
-            pass
+        if timestep_index % (36 * 20) == 0: # all 20 years
+            # pass
             # transfer_dict = self.update_system.run_module(module_transfer=transfer_dict, timestep=timestep_index,
             #                                               inputs=self.inputs)
 

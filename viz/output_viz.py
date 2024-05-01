@@ -32,6 +32,10 @@ portfolio_list = {'flood_agr': ['fa_p'],
                           'multihaz_agr': ['fa_p', 'da_p'],
                           'multihaz_urb': ['fu_p'],
                           'multihaz_multisec': ['fa_p', 'da_p', 'fu_p', 'ds_p']}
+portfolio_list_inv = {'fa_p': ['', 'flood_agr', 'multihaz_agr', 'mulithaz_multisec'],
+                      'da_p': ['','drought_agr', 'multihaz_agr', 'mulithaz_multisec'],
+                      'fu_p': ['','flood_urb','multihaz_urb', 'mulithaz_multisec'],
+                      'ds_p': ['','drought_shp','drought_shp', 'mulithaz_multisec']}
 
 names = [
     "Drought resilient crops", "Rainwater irrigation", "Groundwater irrigation", "River irrigation",
@@ -445,6 +449,41 @@ class OutputPocessing():
 
                     df_out = df_test.copy()
 
+                    # Formatting 'subtracted' column based on 'output' column criteria
+                    def format_subtracted(row):
+                        rounded = round(row['subtracted'], 1)
+                        if not (row['output'].startswith('pathway') or row['output'].startswith('main')):
+                            return str(int(row['subtracted']))  # Convert to integer
+                        else:
+                            # Round to 1 decimal place unless the value is zero
+                            return str(int(row['subtracted'])) if rounded == 0 else str(rounded)
+
+                    df_out['subtracted'] = df_out.apply(format_subtracted, axis=1)
+
+                    # Save to offer old information for next plots
+                    df_out.to_csv(f'{heatmap}/heatmap_statistics_{sector}_{sh_portfolios}_stage_{self.stages[sector]}.csv')
+                    if self.stages[sector] > 1:
+                        previous_stage_df = pd.read_csv(f'{heatmap}/heatmap_statistics_{portfolio_list_inv[sh_portfolios][self.stages[sector]-1]}_{sh_portfolios}_stage_{self.stages[sector]-1}.csv')
+
+                        previous_stage_df['subtracted'] = previous_stage_df.apply(format_subtracted, axis=1)
+                        # Merging on 'output', 'cc_scenario', 'sh_portfolios' with an indicator to track matches
+                        merged_df = pd.merge(df_out, previous_stage_df, on=['output', 'cc_scenario', sh_portfolios],
+                                             how='left', suffixes=('', '_previous'), indicator=True)
+
+                        # Function to format the 'subtracted' string based on whether a match was found
+                        def format_subtracted(row):
+                            if row['_merge'] == 'both':  # There's a match
+                                return f"{row['subtracted']}\n({row['subtracted_previous']})"
+                            else:  # No match
+                                return f"{row['subtracted']}\n(-)"
+
+                        # Apply the function to create the desired 'subtracted' format
+                        merged_df['subtracted'] = merged_df.apply(format_subtracted, axis=1)
+
+                        # Drop unnecessary columns
+                        final_df = merged_df.drop(columns=['subtracted_previous', '_merge'])
+                        df_out = final_df.copy()
+
                     for key in keys_list_full:
                         if key.startswith('pathway') and sh_pair == sh_portfolios:
                             my_cmap = plt.cm.colors.ListedColormap(['grey', 'grey'])
@@ -466,31 +505,32 @@ class OutputPocessing():
                         other_stage_mean.columns.name = None
 
                         other_stage_mean = other_stage_mean.reindex(sorted(other_stage_mean.columns), axis=1)
-                        other_stage_mean = other_stage_mean.fillna(0)
+                        # other_stage_mean = other_stage_mean.fillna(0)
                         other_stage_mean = other_stage_mean.rename(index=cc_scenario_names)
 
-                        if not key.startswith('pathway') and not key.startswith('main'):
-                            other_stage_mean['subtracted'] = other_stage_mean['subtracted'].astype(int)
-                            my_fmt = "d"
-                        else:
-                            other_stage_mean['subtracted'] = other_stage_mean['subtracted'].round(1)
-                            my_fmt = ".1f"
+                        # # if self.stages[sector] > 1:
+                        # if not key.startswith('pathway') and not key.startswith('main'):
+                        #     # other_stage_mean['subtracted'] = other_stage_mean['subtracted'].astype(int)
+                        #     my_fmt = "d"
+                        # else:
+                        #     # other_stage_mean['subtracted'] = other_stage_mean['subtracted'].round(1)
+                        #     my_fmt = ".1f"
 
-                        top_plot_n = other_stage_mean['normalized'].loc[:,[0]]
+                        top_plot_n = other_stage_mean['normalized'].loc[:,[0]].astype(float)
                         top_plot_s = other_stage_mean['subtracted'].loc[:,[0]]
 
-                        bottom_plot_n = other_stage_mean['normalized'].drop(0, axis=1)
+                        bottom_plot_n = other_stage_mean['normalized'].drop(0, axis=1).astype(float)
                         bottom_plot_s = other_stage_mean['subtracted'].drop(0, axis=1)
 
                         # Convert column names to integers
                         bottom_plot_n.columns = bottom_plot_n.columns.astype(int)
                         sns.heatmap(top_plot_n.T,
-                                    annot=top_plot_s.T, fmt=my_fmt,
+                                    annot=top_plot_s.T, fmt='s',
                                     linewidth=.5, ax=top_list[ax_tick], cmap=all_white_cmap, vmin=-1, vmax=1,
                                     cbar=False, annot_kws={
                                 "size": 48 / np.sqrt(number_pathways[self.stages[sector]][sh_pair]-2)}, )
                         sns.heatmap(bottom_plot_n.astype(np.float32).T,
-                                    annot=bottom_plot_s.T, fmt=my_fmt,
+                                    annot=bottom_plot_s.T, fmt='s',
                                     linewidth=.5, ax=bottom_list[ax_tick], cmap=my_cmap, vmin=-1, vmax=1,
                                     cbar=ax_tick == 1, cbar_ax=cbar_ax if ax_tick else None, annot_kws={
                                 "size": 48 / np.sqrt(len(bottom_plot_n.astype(np.float32).T))}, )
