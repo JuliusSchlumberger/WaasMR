@@ -13,8 +13,8 @@ class UpdateGeneralsystem:
         self.urb_scenario = 1
 
     def run_module(self, timestep, module_transfer, inputs):
-        urb_growth = self.initiate_timeinputs(timestep, inputs)
-        urb_growth = 0
+        # urb_growth = self.initiate_timeinputs(timestep, inputs)
+        urb_growth = 30 # grows 30 cells (100 by 100 m) at timestep when called
 
         module_transfer.lost_cropland += np.maximum(0, urb_growth)
         landuse, agri_areas, no_constr = urban_growth(growth=urb_growth, LUmap=module_transfer.LandUse, no_constr=module_transfer.no_constr)

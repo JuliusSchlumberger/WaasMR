@@ -44,8 +44,8 @@ class WaasModel:
 
         if timestep_index % (36 * 20) == 0: # all 20 years
             # pass
-            # transfer_dict = self.update_system.run_module(module_transfer=transfer_dict, timestep=timestep_index,
-            #                                               inputs=self.inputs)
+            transfer_dict = self.update_system.run_module(module_transfer=transfer_dict, timestep=timestep_index,
+                                                          inputs=self.inputs)
 
         if (self.hazard_sector_pair in ['flood_urb', 'flood_agr']) or (self.stage in [2, 3]):
             transfer_dict = self.f_module.run_module(timestep=timestep_index, inputs=self.inputs,
